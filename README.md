@@ -1,7 +1,12 @@
 # Music Visualiser Project
 
-Name:
+Name: Sagar Singh
+Student Number: C22731795
 
+Name: 
+Student Number: 
+
+Name: 
 Student Number: 
 
 ## Instructions
