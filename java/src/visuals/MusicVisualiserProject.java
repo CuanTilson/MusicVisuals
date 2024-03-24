@@ -13,7 +13,6 @@ public class MusicVisualiserProject extends Visual {
     AudioBuffer ab;
     float x, y, z;
 
-    // Create objects of visuals
     Verse1 v1;
     Verse2 v2;
     Prechorus pc;
@@ -26,6 +25,7 @@ public class MusicVisualiserProject extends Visual {
     float smoothedAmplitude = 0;
 
     public void settings() {
+        // fullScreen(P3D);
         size(1000, 1000, P3D);
         x = width / 2;
         y = height / 2;
@@ -45,6 +45,12 @@ public class MusicVisualiserProject extends Visual {
         ab = ap.mix;
         colorMode(HSB);
         lerpedBuffer = new float[width];
+
+        // startMinim();
+        // loadAudio("KetchupSong.mp3");
+
+        // Create objects
+        v1 = new Verse1(this);
     }
 
     public void keyPressed() {
@@ -67,5 +73,8 @@ public class MusicVisualiserProject extends Visual {
 
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
+
+        v1.render();
+
     }
 }
