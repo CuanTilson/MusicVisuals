@@ -1,4 +1,4 @@
-package ie.tudublin;
+package visuals;
 
 import processing.core.PApplet;
 

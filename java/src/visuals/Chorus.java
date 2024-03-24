@@ -1,4 +1,4 @@
-package ie.tudublin;
+package visuals;
 
 public class Chorus {
 
