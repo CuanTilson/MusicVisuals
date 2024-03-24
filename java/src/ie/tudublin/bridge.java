@@ -1,5 +1,5 @@
 package ie.tudublin;
 
-public class bridge {
+public class Bridge {
 
 }

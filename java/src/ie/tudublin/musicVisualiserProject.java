@@ -3,7 +3,7 @@ package ie.tudublin;
 import example.AudioBandsVisual;
 import example.WaveForm;
 
-public class musicVisualiserProject extends Visual {
+public class MusicVisualiserProject extends Visual {
 
     public void settings() {
         size(1024, 500);
@@ -17,5 +17,7 @@ public class musicVisualiserProject extends Visual {
     public void draw() {
         background(0);
 
+        Verse1 v1 = new Verse1();
+        v1.draw();
     }
 }

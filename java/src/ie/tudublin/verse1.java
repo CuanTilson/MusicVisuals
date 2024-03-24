@@ -1,5 +1,13 @@
 package ie.tudublin;
 
-public class verse1 {
+public class Verse1 {
 
+    public void Verse1() {
+
+    }
+
+    public void draw()
+    {
+        
+    }
 }

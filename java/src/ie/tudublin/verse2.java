@@ -1,5 +1,5 @@
 package ie.tudublin;
 
-public class verse2 {
+public class Verse2 {
 
 }
