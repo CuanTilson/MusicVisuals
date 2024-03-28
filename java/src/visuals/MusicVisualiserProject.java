@@ -1,18 +1,8 @@
 package visuals;
 
 import ie.tudublin.*;
-import ddf.minim.AudioBuffer;
-// import ddf.minim.AudioInput;
-import ddf.minim.AudioPlayer;
-import ddf.minim.Minim;
 
 public class MusicVisualiserProject extends Visual {
-    // Minim and Audio
-    Minim minim;
-    AudioPlayer ap;
-    AudioBuffer ab;
-    // AudioInput ai;
-
     // Object instances
     Verse1 v1;
     Verse2 v2;
@@ -23,31 +13,24 @@ public class MusicVisualiserProject extends Visual {
     // Rendering
     float x, y, z;
 
-    // Audio analysis
-    float[] lerpedBuffer;
-    float smoothedAmplitude = 0;
-
     public void settings() {
         fullScreen(P3D);
         // size(1000, 1000, P3D);
         // x = width / 2;
         // y = height / 2;
         // z = 0;
-
-        // Use this to make fullscreen
-        // fullScreen();
     }
 
     public void setup() {
-        minim = new Minim(this);
-        ap = minim.loadFile("KetchupSong.mp3", 1024);
-        ap.play();
-        ab = ap.mix;
-        colorMode(HSB);
-        lerpedBuffer = new float[width];
+        startMinim();
+        loadAudio("KetchupSongES.mp3");
 
         // Create objects
         v1 = new Verse1(this);
+        // v2 = new Verse2(this);
+        // pc = new Prechorus(this);
+        c = new Chorus(this);
+        // b = new Bridge(this);
     }
 
     public void keyPressed() {
@@ -71,7 +54,7 @@ public class MusicVisualiserProject extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
 
-        v1.render();
+        c.render();
 
     }
 }
