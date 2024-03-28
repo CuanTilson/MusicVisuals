@@ -14,11 +14,10 @@ public class Chorus {
 
     // Method to render the Chorus visual
     public void render() {
-        float gap = mvp.width / (float) mvp.getBands().length;
-        mvp.noStroke();
-        for (int i = 0; i < mvp.getBands().length; i++) {
-            mvp.fill(PApplet.map(i, 0, mvp.getBands().length, 255, 0), 255, 255);
-            mvp.rect(i * gap, mvp.height, gap, -mvp.getSmoothedBands()[i] * 10f);
-        }
+        // Text saying Chorus centred on screen
+        mvp.textSize(32);
+        mvp.textAlign(PConstants.CENTER, PConstants.CENTER);
+        mvp.fill(255);
+        mvp.text("Chorus", mvp.width / 2, mvp.height / 2);
     }
 }
