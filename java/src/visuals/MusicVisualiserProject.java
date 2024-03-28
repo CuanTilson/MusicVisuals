@@ -2,40 +2,40 @@ package visuals;
 
 import ie.tudublin.*;
 import ddf.minim.AudioBuffer;
-import ddf.minim.AudioInput;
+// import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 
 public class MusicVisualiserProject extends Visual {
+    // Minim and Audio
     Minim minim;
     AudioPlayer ap;
-    AudioInput ai;
     AudioBuffer ab;
-    float x, y, z;
+    // AudioInput ai;
 
+    // Object instances
     Verse1 v1;
     Verse2 v2;
     Prechorus pc;
     Chorus c;
     Bridge b;
 
-    int mode = 0;
+    // Rendering
+    float x, y, z;
 
+    // Audio analysis
     float[] lerpedBuffer;
     float smoothedAmplitude = 0;
 
     public void settings() {
-        // fullScreen(P3D);
-        size(1000, 1000, P3D);
-        x = width / 2;
-        y = height / 2;
-        z = 0;
+        fullScreen(P3D);
+        // size(1000, 1000, P3D);
+        // x = width / 2;
+        // y = height / 2;
+        // z = 0;
 
         // Use this to make fullscreen
         // fullScreen();
-
-        // Use this to make fullscreen and use P3D for 3D graphics
-        // fullScreen(P3D, SPAN);
     }
 
     public void setup() {
@@ -45,9 +45,6 @@ public class MusicVisualiserProject extends Visual {
         ab = ap.mix;
         colorMode(HSB);
         lerpedBuffer = new float[width];
-
-        // startMinim();
-        // loadAudio("KetchupSong.mp3");
 
         // Create objects
         v1 = new Verse1(this);
