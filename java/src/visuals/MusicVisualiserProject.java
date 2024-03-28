@@ -1,6 +1,7 @@
 package visuals;
 
 import ie.tudublin.*;
+import processing.core.PShape;
 
 public class MusicVisualiserProject extends Visual {
     // Object instances
@@ -11,6 +12,8 @@ public class MusicVisualiserProject extends Visual {
     Bridge bridge;
 
     float pausedPosition = 0;
+
+    PShape tomato;
 
     // Rendering
     float x, y, z;
@@ -41,6 +44,8 @@ public class MusicVisualiserProject extends Visual {
 
         startMinim();
         loadAudio("KetchupSongES.mp3");
+
+        tomato = loadShape("tomato.obj");
 
         // Create objects
         verse1 = new Verse1(this);
@@ -102,7 +107,8 @@ public class MusicVisualiserProject extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
 
-        int currentSection = getCurrentSongSection(currentTime);
+        // int currentSection = getCurrentSongSection(currentTime);
+        int currentSection = 2;
 
         switch (currentSection) {
             case 0: // Verse 1
