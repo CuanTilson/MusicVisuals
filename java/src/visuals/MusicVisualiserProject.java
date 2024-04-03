@@ -113,7 +113,7 @@ public class MusicVisualiserProject extends Visual {
         switch (currentSection) {
             case 0: // Verse 1
                 background(0);
-                verse1.render((int) x, (int) y);
+                verse1.render(width, height);
                 break;
             case 1: // Pre-Chorus 1
                 background(0);
