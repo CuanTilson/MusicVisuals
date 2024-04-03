@@ -10,7 +10,9 @@ public class Chorus {
     PVector[] tomatoPositions;
     int numTomatoes = 50; // Adjust this value to change the number of tomatoes
     float tomatoSpeed = 8; // Adjust this value to change the speed of the tomatoes
-    float tomatoScale;
+
+    // Declare a variable to store the amplitude when the music is paused
+    float pausedAmplitude = 0;
 
     // Tube properties
     float tubeRadius = 300; // Adjust this value to change the radius of the tube
@@ -35,10 +37,15 @@ public class Chorus {
 
     void generateTomatoPositions() {
         tomatoPositions = new PVector[numTomatoes];
+        float step = tubeLength / numTomatoes; // Calculate the step size between tomatoes
+        float backSpread = tubeLength / 4; // Adjust this value to control how far back tomatoes spread
+
         for (int i = 0; i < numTomatoes; i++) {
             float x = mvp.random(-tubeRadius, tubeRadius);
             float y = mvp.random(-tubeRadius, tubeRadius);
-            float z = mvp.random(-tubeLength / 2, tubeLength / 2);
+            // Spread out z values along the length of the tube, with more spread towards
+            // the back
+            float z = -tubeLength / 2 + i * step + mvp.random(-backSpread, backSpread);
             tomatoPositions[i] = new PVector(x, y, z);
         }
     }
@@ -57,20 +64,26 @@ public class Chorus {
         }
     }
 
-    // Adjust scaling logic to ensure proportional scaling based on amplitude
     void drawFloatingTomatoes() {
         float amplitude = mvp.getSmoothedAmplitude();
         float tomatoSize = PApplet.map(amplitude, 0, 1, 20, 350); // Map amplitude to larger tomato size range
         for (int i = 0; i < numTomatoes; i++) {
-            mvp.pushMatrix();
-            mvp.translate(tomatoPositions[i].x, tomatoPositions[i].y, tomatoPositions[i].z);
-            mvp.scale(tomatoSize / 75.0f); // Scale the tomato size based on amplitude
+            // Check if the tomato's position lies within the cylinder
+            if (isInsideCylinder(tomatoPositions[i])) {
+                mvp.pushMatrix();
+                mvp.translate(tomatoPositions[i].x, tomatoPositions[i].y, tomatoPositions[i].z);
+                mvp.scale(tomatoSize / 75.0f); // Scale the tomato size based on amplitude
 
-            // Apply color to tomato
-            mvp.fill(255);
-            tomato(mvp);
-            mvp.popMatrix();
+                // Apply color to tomato
+                tomato(mvp);
+                mvp.popMatrix();
+            }
         }
+    }
+
+    boolean isInsideCylinder(PVector position) {
+        float d = PApplet.dist(0, 0, position.x, position.y); // Distance from the center of the cylinder's base
+        return d <= tubeRadius && position.z >= -tubeLength / 2 && position.z <= tubeLength / 2;
     }
 
     void drawCylinder() {
