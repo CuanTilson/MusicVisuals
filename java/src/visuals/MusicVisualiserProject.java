@@ -18,16 +18,16 @@ public class MusicVisualiserProject extends Visual {
     // Rendering
     float x, y, z;
 
-    // Define song section time intervals
-    float[][] songSections = {
-            { 0, 20 }, // Verse 1
-            { 21, 36 }, // Pre-Chorus 1
-            { 37, 60 }, // Chorus 1
-            { 61, 79 }, // Verse 2
-            { 80, 94 }, // Pre-Chorus 2 (Assuming 21-36 was a typo and should be 80-94)
-            { 95, 119 }, // Chorus 2
-            { 120, 139 }, // Bridge
-            { 140, 210 } // Chorus 3 (Adjust these values as needed)
+    // Define song section start times
+    float[] songSectionStartTimes = {
+            0, // Verse 1
+            21, // Pre-Chorus 1
+            37, // Chorus 1
+            61, // Verse 2
+            80, // Pre-Chorus 2 (Assuming 21-36 was a typo and should be 80-94)
+            95, // Chorus 2
+            120, // Bridge
+            140 // Chorus 3 (Adjust these values as needed)
     };
 
     public void settings() {
@@ -84,10 +84,14 @@ public class MusicVisualiserProject extends Visual {
     }
 
     int getCurrentSongSection(float songPosition) {
-        for (int i = 0; i < songSections.length; i++) {
-            if (songPosition >= songSections[i][0] && songPosition <= songSections[i][1]) {
+        for (int i = 0; i < songSectionStartTimes.length - 1; i++) {
+            if (songPosition >= songSectionStartTimes[i] && songPosition < songSectionStartTimes[i + 1]) {
                 return i;
             }
+        }
+        // Check if the current time is after the last section start time
+        if (songPosition >= songSectionStartTimes[songSectionStartTimes.length - 1]) {
+            return songSectionStartTimes.length - 1;
         }
         return -1; // If not in any known section
     }
@@ -107,8 +111,8 @@ public class MusicVisualiserProject extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
 
-        // int currentSection = getCurrentSongSection(currentTime);
-        int currentSection = 2;
+        int currentSection = getCurrentSongSection(currentTime);
+        // int currentSection = 2;
 
         switch (currentSection) {
             case 0: // Verse 1
