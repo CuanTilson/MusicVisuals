@@ -1,6 +1,7 @@
 package visuals;
 
 import ie.tudublin.*;
+import processing.core.PImage;
 import processing.core.PShape;
 
 public class MusicVisualiserProject extends Visual {
@@ -46,6 +47,8 @@ public class MusicVisualiserProject extends Visual {
         loadAudio("KetchupSongES.mp3");
 
         tomato = loadShape("tomato.obj");
+
+        imageMode(CENTER);
 
         // Create objects
         verse1 = new Verse1(this);
@@ -128,6 +131,7 @@ public class MusicVisualiserProject extends Visual {
                 break;
             case 3: // Verse 2
                 verse2.render();
+
                 if (currentTime > songSectionStartTimes[4] - 5) {
                     verse2.panOut();
                 }
@@ -144,6 +148,9 @@ public class MusicVisualiserProject extends Visual {
             case 7: // Chorus 3 (or any additional sections)
                 chorus.render();
                 break;
+            default:
+                break;
         }
+
     }
 }
