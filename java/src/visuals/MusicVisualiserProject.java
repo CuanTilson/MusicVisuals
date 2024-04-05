@@ -45,7 +45,7 @@ public class MusicVisualiserProject extends Visual {
         startMinim();
         loadAudio("KetchupSongES.mp3");
 
-        tomato = loadShape("tomato.obj");
+        tomato = loadShape("tomato8.obj");
 
         // Create objects
         verse1 = new Verse1(this);
