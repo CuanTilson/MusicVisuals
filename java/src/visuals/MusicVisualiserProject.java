@@ -1,6 +1,7 @@
 package visuals;
 
 import ie.tudublin.*;
+import processing.core.PImage;
 import processing.core.PShape;
 
 public class MusicVisualiserProject extends Visual {
@@ -46,6 +47,8 @@ public class MusicVisualiserProject extends Visual {
         loadAudio("KetchupSongES.mp3");
 
         tomato = loadShape("tomato8.obj");
+
+        imageMode(CENTER);
 
         // Create objects
         verse1 = new Verse1(this);
@@ -111,42 +114,43 @@ public class MusicVisualiserProject extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
 
-        int currentSection = getCurrentSongSection(currentTime);
-        // int currentSection = 2;
+        // int currentSection = getCurrentSongSection(currentTime);
+        int currentSection = 3;
+
+        background(0);
 
         switch (currentSection) {
             case 0: // Verse 1
-                background(0);
                 verse1.render(width, height);
                 break;
             case 1: // Pre-Chorus 1
-                background(0);
                 preChorus.render();
                 break;
             case 2: // Chorus 1
-                background(0);
                 chorus.render();
                 break;
             case 3: // Verse 2
-                background(0);
                 verse2.render();
+
+                if (currentTime > songSectionStartTimes[4] - 5) {
+                    verse2.panOut();
+                }
                 break;
             case 4: // Pre-Chorus 2
-                background(0);
                 preChorus.render();
                 break;
             case 5: // Chorus 2
-                background(0);
                 chorus.render();
                 break;
             case 6: // Bridge
-                background(0);
                 bridge.render();
                 break;
             case 7: // Chorus 3 (or any additional sections)
-                background(0);
                 chorus.render();
                 break;
+            default:
+                break;
         }
+
     }
 }
