@@ -6,9 +6,9 @@ import processing.core.*;
 
 public class Verse2 {
     MusicVisualiserProject mvp;
-    PGraphics CD;
-    PImage CDCover;
-    PGraphics[] band;
+    PGraphics CD; // circle for masking album cover
+    PImage CDCover; // album cover
+    PGraphics[] band; // curved line around the CD
     PGraphics[] bandMask;
     int bandCount;
 
@@ -44,7 +44,7 @@ public class Verse2 {
         this.CDCover = mvp.loadImage("cover.jpg");
         CDCover.resize(CDSize, CDSize);
         this.cdPhase = 0;
-        CDpositionX = -CDSize - 10;
+        CDpositionX = -CDSize - 10; // CD spawned out of frame
         CDpositionY = centerY;
         createCD();
 
@@ -58,17 +58,18 @@ public class Verse2 {
             createMask(i);
         }
 
-        this.panOutDist = 1;
+        this.panOutDist = 0;
     }
 
     public void render() {
 
         if (cdPhase == 0) {
-            // roll in
+            // roll in phase
             updateCD();
             return;
         }
 
+        // after rolling phase
         for (int i = 0; i < bandCount; i++) {
             updateBand(i);
             updateMask(i);
@@ -98,33 +99,34 @@ public class Verse2 {
     }
 
     public void updateCD() {
+        // if CD is in middle
         if (CDpositionX >= centerX) {
             cdPhase++;
             CDpositionX = centerX;
-            rotation = (rotation + r2) % mvp.TWO_PI;
+            rotation = (rotation + r2) % mvp.TWO_PI; // new rotate CD
         } else {
-            rotation = (rotation + r1) % mvp.TWO_PI;
+            rotation = (rotation + r1) % mvp.TWO_PI; // new rotate CD
         }
 
-        CDCover.mask(CD);
+        CDCover.mask(CD); // mask the album cover image with the shape CD (circle)
 
         mvp.pushMatrix();
-        mvp.translate(CDpositionX, CDpositionY);
-        mvp.rotate(rotation);
-        mvp.image(CDCover, 0, 0);
+        mvp.translate(CDpositionX, CDpositionY + panOutDist); // position CD
+        mvp.rotate(rotation); // rotate CD
+        mvp.image(CDCover, 0, 0); // load CD
         mvp.fill(0, 255, 0);
         mvp.noStroke();
-        mvp.circle(0, 0, 50);
+        mvp.circle(0, 0, 50); // CD hole
         mvp.popMatrix();
 
-        CDpositionX += 5;
+        CDpositionX += 5; // move CD to the right
 
         return;
     }
 
     public void panOut() {
-        mvp.translate(0, panOutDist);
-        panOutDist++;
+        // move CD out of frame
+        panOutDist += 3;
         return;
     }
 }
