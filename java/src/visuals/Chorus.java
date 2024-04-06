@@ -9,7 +9,6 @@ public class Chorus {
 
     PVector[] tomatoPositions;
     int numTomatoes = 50; // Adjust this value to change the number of tomatoes
-    float tomatoSpeed = 8; // Adjust this value to change the speed of the tomatoes
 
     // Declare a variable to store the amplitude when the music is paused
     float pausedAmplitude = 0;
@@ -37,12 +36,20 @@ public class Chorus {
 
     void generateTomatoPositions() {
         tomatoPositions = new PVector[numTomatoes];
+        float buffer = tubeRadius * 0.5f; // Define a buffer size as half of the tube radius
+
+        // Define the range for generating tomatoes within the buffer
+        float minX = -tubeRadius + buffer;
+        float maxX = tubeRadius - buffer;
+        float minY = -tubeRadius + buffer;
+        float maxY = tubeRadius - buffer;
+
         float step = tubeLength / numTomatoes; // Calculate the step size between tomatoes
         float backSpread = tubeLength / 4; // Adjust this value to control how far back tomatoes spread
 
         for (int i = 0; i < numTomatoes; i++) {
-            float x = mvp.random(-tubeRadius, tubeRadius);
-            float y = mvp.random(-tubeRadius, tubeRadius);
+            float x = mvp.random(minX, maxX);
+            float y = mvp.random(minY, maxY);
             // Spread out z values along the length of the tube, with more spread towards
             // the back
             float z = -tubeLength / 2 + i * step + mvp.random(-backSpread, backSpread);
@@ -66,7 +73,7 @@ public class Chorus {
 
     void drawFloatingTomatoes() {
         float amplitude = mvp.getSmoothedAmplitude();
-        float tomatoSize = PApplet.map(amplitude, 0, 1, 20, 350); // Map amplitude to larger tomato size range
+        float tomatoSize = PApplet.map(amplitude, 0, 1, 20, 1000) * 600; // Map amplitude to larger tomato size range
         for (int i = 0; i < numTomatoes; i++) {
             // Check if the tomato's position lies within the cylinder
             if (isInsideCylinder(tomatoPositions[i])) {
@@ -74,7 +81,6 @@ public class Chorus {
                 mvp.translate(tomatoPositions[i].x, tomatoPositions[i].y, tomatoPositions[i].z);
                 mvp.scale(tomatoSize / 75.0f); // Scale the tomato size based on amplitude
 
-                // Apply color to tomato
                 tomato(mvp);
                 mvp.popMatrix();
             }
