@@ -115,7 +115,7 @@ public class MusicVisualiserProject extends Visual {
         calculateAverageAmplitude();
 
         // int currentSection = getCurrentSongSection(currentTime);
-        int currentSection = 3;
+        int currentSection = 2;
 
         background(0);
 
