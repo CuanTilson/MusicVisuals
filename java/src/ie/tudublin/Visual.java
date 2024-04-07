@@ -128,4 +128,30 @@ public abstract class Visual extends PApplet {
 	public FFT getFFT() {
 		return fft;
 	}
+
+	/*
+	 * this function will divided the audioBuffer into equal sections
+	 * where it calculates that interval's average. then lerps it.
+	 */
+	public float[] calculateSmoothedBufferInSections(int numSection) {
+		float[] smoothedBuffer = new float[numSection];
+		float avg;
+		int size = ab.size() / numSection; // section size
+		float total = 0;
+
+		for (int j = 0; j < numSection; j++) {
+			total = 0;
+			for (int i = j * size; i < j * (size + 1); i++) {
+				if (i == ab.size()) {
+					break;
+				}
+				total += abs(ab.get(i));
+			}
+
+			avg = total / size;
+			smoothedBuffer[j] = lerp(smoothedBuffer[j], avg, 0.05f);
+		}
+
+		return smoothedBuffer;
+	}
 }
