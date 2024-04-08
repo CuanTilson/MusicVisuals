@@ -149,7 +149,7 @@ public abstract class Visual extends PApplet {
 			}
 
 			avg = total / size;
-			smoothedBuffer[j] = lerp(smoothedBuffer[j], avg, 0.05f);
+			smoothedBuffer[j] = lerp(smoothedBuffer[j], avg, 0.01f);
 		}
 
 		return smoothedBuffer;

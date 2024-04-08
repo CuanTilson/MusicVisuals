@@ -15,6 +15,10 @@ public class Verse2 {
     int vertices;
     float[] rotate;
     float[] rot;
+    float[] multiplier;
+    int[] colorShift;
+    int[] shiftCounter;
+    int[] shiftDir;
 
     int width;
     int height;
@@ -53,21 +57,35 @@ public class Verse2 {
         CDpositionY = centerY;
         createCD();
 
-        this.bandCount = 6;
+        this.bandCount = 5;
         this.vertices = 9 * 4;
 
         this.band = new PGraphics[bandCount];
         this.bandMask = new PGraphics[bandCount];
         this.rotate = new float[bandCount];
         this.rot = new float[bandCount];
+        this.multiplier = new float[bandCount];
+        this.colorShift = new int[bandCount];
+        this.shiftCounter = new int[bandCount];
+        this.shiftDir = new int[bandCount];
 
         for (int i = 0; i < bandCount; i++) {
             this.band[i] = mvp.createGraphics(width, height, mvp.P3D);
             this.bandMask[i] = mvp.createGraphics(width, height, mvp.P3D);
-            createMask(i);
             rotate[i] = 0;
             rot[i] = mvp.random((float) -0.04, (float) 0.04);
+            this.shiftCounter[i] = this.colorShift[i] = 0;
+            this.shiftDir[i] = 1;
+
+            if (i == 0) {
+                multiplier[i] = 100000;
+            } else {
+                multiplier[i] = mvp.map(bandCount - i, 1, bandCount, 30000, 60000);
+            }
+
         }
+
+        rot[0] = (float) 0.02;
 
         this.panOutDist = 0;
 
@@ -84,8 +102,7 @@ public class Verse2 {
         }
 
         // after rolling phase
-        mvp.blendMode(mvp.ADD);
-        for (int i = 0; i < bandCount; i++) {
+        for (int i = bandCount - 1; i >= 0; i--) {
             updateMask(i);
             updateBand(i);
         }
@@ -102,25 +119,42 @@ public class Verse2 {
         float diameterEnd, diameterStart;
 
         diameterStart = 10;
-        diameterEnd = height * 2;
+        diameterEnd = (float) height * (float) 1.5;
+        if (j == 0) {
+            diameterEnd = width;
 
-        x1 = mvp.random(-diameterEnd / 2, diameterEnd / 2) + width / 2;
-        y1 = mvp.random(-diameterEnd / 2, diameterEnd / 2) + height / 2;
+        }
+
+        x1 = (centerY) * (-mvp.cos(rotate[j])) + centerX;
+        y1 = (centerY) * (mvp.sin(rotate[j])) + centerY;
 
         x2 = width / 2;
         y2 = height / 2;
 
         step = 5;
+        float h = mvp.map(j, 0, bandCount - 1, 0, 240);
+
+        shiftCounter[j] += shiftDir[j] * j;
+
+        if ((h + shiftCounter[j]) > 230) {
+            shiftDir[j] = -1;
+        } else if ((h + shiftCounter[j]) < 20) {
+            shiftDir[j] = 1;
+        }
+        h += shiftCounter[j];
 
         float transparency = 255;
+        float brightness = 255; // 150 for ADD mode
 
-        int colorStep = 50;
-
-        start = curr = mvp.color(j * colorStep, 255, 255, transparency);
-        end = mvp.color(colorStep + j * colorStep, 255, 255, transparency);
+        if (j > 0) {
+            start = curr = mvp.color(255 - h, 255, brightness, transparency);
+            end = mvp.color(255 - (h + 255 / 3), 240, brightness, transparency);
+        } else {
+            start = curr = mvp.color(40, 255, 255, 255);
+            end = mvp.color(20, 240, 255, 255);
+        }
 
         bandMask[j].beginDraw();
-        // band[j].background(255);
         bandMask[j].noStroke();
         bandMask[j].noFill();
 
@@ -140,6 +174,8 @@ public class Verse2 {
     }
 
     public void updateMask(int i) {
+
+        bandMask[i].rotate(rotate[i]);
         return;
     }
 
@@ -151,7 +187,7 @@ public class Verse2 {
         int k = 0;
 
         for (int j = realVertices * i; j < realVertices * (1 + i); j++) {
-            barLength[k] = smoothedBands[j] * 10000;
+            barLength[k] = smoothedBands[j] * multiplier[i];
             k++;
         }
 
@@ -160,11 +196,17 @@ public class Verse2 {
         band[i].pushMatrix();
         band[i].translate(width / 2, height / 2);
 
-        if (i > 1) {
+        // mvp.blendMode(mvp.ADD);
+
+        if (i > 0) {
             // blob shape
             band[i].noStroke();
+            r *= mvp.map(i, 1, bandCount, 1, (float) 2.5);
+
         } else {
-            // line
+            // line strips
+            band[i].rotate(mvp.QUARTER_PI / 4);
+            band[i].translate(width / 8, 0);
             band[i].strokeWeight(5);
             band[i].stroke(150, 255, 255);
             band[i].noFill();
@@ -191,6 +233,10 @@ public class Verse2 {
                 y = mvp.sin(angle) * (barLength[q % realVertices] / 2 + r);
             }
 
+            if (i == 0) {
+                x *= 3;
+                y *= 1.5;
+            }
             band[i].curveVertex(x, y);
         }
 
@@ -198,10 +244,12 @@ public class Verse2 {
         band[i].popMatrix();
         band[i].endDraw();
 
+        createMask(i);
+
         rotate[i] = (rotate[i] + rot[i]) % mvp.TWO_PI;
 
         bandMask[i].mask(band[i]);
-        mvp.image(bandMask[i], width / 2, height / 2, width, height);
+        mvp.image(bandMask[i], width / 2, height / 2 + panOutDist, width, height);
 
         return;
     }
