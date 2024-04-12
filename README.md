@@ -1,58 +1,37 @@
-# Music Visualiser Project
+![Logo](https://i.scdn.co/image/ab67616d0000b2737cbbd0328713a05ea51d3eaf)
 
-Name: Sagar Singh
+# Music Visualiser Assignment
 
-Student Number: C22731795
+As part of our Object Oriented Programming module, we are required to create a Music Visualiser. This assignment challenges us to create a program that generates an abstract visual representation of a chosen song. By utilising audio analysis techniques and creative coding, we aim to produce a visually captivating experience that reflects the mood, tempo, and structure of the song.
 
-Name: Hemant Sundarrajan
+## Authors
 
-Student Number: C22440886
+- [Sagar Singh](https://github.com/SagarSingh-portfolio) | C22731795
+- [Hemant Sundarrajan](https://github.com/HemantSun) | C22440886
+- [Cúán Tilson](https://github.com/CuanTilson) | C22385233
 
-Name: Cúán Tilson
+## Song Chosen
 
-Student Number: C22385233
+We choose [Aserejé (The Ketchup Song) [Spanish Version]](https://github.com/CuanTilson) by Las Ketchup
 
-## Instructions
+[![YouTube](https://img.youtube.com/vi/arZZw8NyPq8/0.jpg)](https://www.youtube.com/watch?v=arZZw8NyPq8)
 
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
+We choose this song as it was [top of the charts in 2002](https://top40-charts.com/chart.php?cid=31&date=2002-11-23), the year we were born.
+We thought that the theme, and high energy of the song would be perfect for our music visualiser.
 
-# Description of the assignment
+The idea of the song being called “The Ketchup Song” also would prove to be creative, in that we can create visuals related to ketchup. I.e., Tomatoes, vibrant colors.
 
-# Instructions
+The song has a narrow theme that we could really play with the visuals and be creative to express entertaining visuals
 
-# How it works
+The song is about a young man named “Diego” who enters a nightclub while attempting to sing his favorite song “Rapper’s Delight” by the Sugarhill Gang. His Spanish gibberish imitation of that song makes The Ketchup song’s main chorus
 
-# What I am most proud of in the assignment
+## Music Visualiser Composition
 
-# Markdown Tutorial
+#### Verse 1
 
-This is _emphasis_
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
 
-This is a bulleted list
-
-- Item
-- Item
-
-This is a numbered list
-
-1. Item
-1. Item
-
-This is a [hyperlink](http://bryanduggan.org)
-
-# Headings
-
-## Headings
-
-#### Headings
-
-##### Headings
-
-This is code:
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ```Java
 public void render()
@@ -65,9 +44,13 @@ public void render()
 }
 ```
 
-So is this without specifying the language:
+#### Pre-chorus
 
-```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+```Java
 public void render()
 {
 	ui.noFill();
@@ -78,23 +61,67 @@ public void render()
 }
 ```
 
-This is an image using a relative URL:
+#### Chorus
 
-![An image](images/p8.png)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
 
-This is an image using an absolute URL:
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-![A different image](https://bryanduggandotorg.files.wordpress.com/2019/02/infinite-forms-00045.png?w=595&h=&zoom=2)
+```Java
+public void render()
+{
+	ui.noFill();
+	ui.stroke(255);
+	ui.rect(x, y, width, height);
+	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
+	ui.text(text, x + width * 0.5f, y + height * 0.5f);
+}
+```
 
-This is a youtube video:
+#### Verse 2
 
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
 
-This is a table:
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-| Heading 1  | Heading 2                      |
-| ---------- | ------------------------------ |
-| Some stuff | Some more stuff in this column |
-| Some stuff | Some more stuff in this column |
-| Some stuff | Some more stuff in this column |
-| Some stuff | Some more stuff in this column |
+```Java
+public void render()
+{
+	ui.noFill();
+	ui.stroke(255);
+	ui.rect(x, y, width, height);
+	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
+	ui.text(text, x + width * 0.5f, y + height * 0.5f);
+}
+```
+
+#### Bridge
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+```Java
+public void render()
+{
+	ui.noFill();
+	ui.stroke(255);
+	ui.rect(x, y, width, height);
+	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
+	ui.text(text, x + width * 0.5f, y + height * 0.5f);
+}
+```
+
+## What I Am Most Proud of in the Assignment
+
+#### Sagar Singh
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
+
+#### Hemant Sundarrajan
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
+
+#### Cúán Tilson
+
+Created a tomato model in Blender. Learned how to make colour maps for the texturing of the tomato model.
