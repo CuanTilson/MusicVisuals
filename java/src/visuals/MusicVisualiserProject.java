@@ -46,7 +46,7 @@ public class MusicVisualiserProject extends Visual {
         startMinim();
         loadAudio("KetchupSongES.mp3");
 
-        tomato = loadShape("tomato8.obj");
+        tomato = loadShape("tomato.obj");
 
         imageMode(CENTER);
 
