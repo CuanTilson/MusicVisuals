@@ -22,7 +22,10 @@ public class Verse1 extends Visual {
     public void render(int width, int height) {
         mvp.translate(width / 2, height / 2); // center the window
         mvp.colorMode(PApplet.HSB); // Set color mode to HSB
-        mvp.lights();
+        // mvp.lights();
+        // mvp.ambientLight(0, 255, 255, 0, 0, 0);
+        mvp.pointLight(190, 255, 255, 0, 0, 0);
+
         mvp.shapeMode(CENTER);
         animate(sun);
     }
@@ -48,6 +51,8 @@ public class Verse1 extends Visual {
         mvp.rotate(p.position, perpendicular.x, perpendicular.y, perpendicular.z);
         mvp.translate(p.orbitVector.x, p.orbitVector.y, p.orbitVector.z);
         mvp.sphere(p.size / 2);
+        // mvp.scale(p.size * 100);
+        // mvp.shape(mvp.tomato);
 
         if (p.orbitingBody != null) {
             for (int i = 0; i < p.orbitingBody.length; i++) {
@@ -57,6 +62,20 @@ public class Verse1 extends Visual {
         mvp.popMatrix();
         p.orbit();
 
+    }
+
+    public void test(int width, int height) {
+
+        mvp.translate(width / 2, height / 2); // center the window
+        mvp.colorMode(PApplet.HSB); // Set color mode to HSB
+        mvp.lights();
+        mvp.shapeMode(CENTER);
+
+        mvp.pushMatrix();
+        mvp.scale(1000);
+        mvp.shape(mvp.tomato);
+
+        mvp.popMatrix();
     }
 
 }
