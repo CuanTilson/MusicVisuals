@@ -15,6 +15,8 @@ public class MusicVisualiserProject extends Visual {
     float pausedPosition = 0;
 
     PShape tomato;
+    PShape sunTomato;
+    PShape planetTomato;
 
     // Rendering
     float x, y, z;
@@ -47,6 +49,9 @@ public class MusicVisualiserProject extends Visual {
         loadAudio("KetchupSongES.mp3");
 
         tomato = loadShape("tomato.obj");
+        sunTomato = loadShape("tomato.obj");
+        sunTomato.disableStyle();
+        planetTomato = loadShape("tomato.obj");
 
         imageMode(CENTER);
 
@@ -115,13 +120,14 @@ public class MusicVisualiserProject extends Visual {
         calculateAverageAmplitude();
 
         // int currentSection = getCurrentSongSection(currentTime);
-        int currentSection = 2;
+        int currentSection = 0;
 
         background(0);
 
         switch (currentSection) {
             case 0: // Verse 1
-                verse1.render(width, height);
+                // verse1.render(width, height);
+                verse1.test(width, height);
                 break;
             case 1: // Pre-Chorus 1
                 preChorus.render();
