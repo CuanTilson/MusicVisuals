@@ -51,7 +51,7 @@ public class MusicVisualiserProject extends Visual {
         tomato = loadShape("tomato.obj");
         sunTomato = loadShape("tomato.obj");
         sunTomato.disableStyle();
-        planetTomato = loadShape("tomato.obj");
+        planetTomato = loadShape("tomatoBW.obj");
 
         imageMode(CENTER);
 
@@ -126,8 +126,8 @@ public class MusicVisualiserProject extends Visual {
 
         switch (currentSection) {
             case 0: // Verse 1
-                // verse1.render(width, height);
-                verse1.test(width, height);
+                verse1.render(width, height);
+                // verse1.test(width, height);
                 break;
             case 1: // Pre-Chorus 1
                 preChorus.render();
