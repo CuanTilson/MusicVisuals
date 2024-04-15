@@ -41,7 +41,7 @@ public class Verse1 extends Visual {
         // lighting
         // mvp.lights();
         mvp.pointLight(move, 255, 150, 0, 0, 0); // light from sun
-        mvp.directionalLight(0, 0, 150, 0, 1, 0); // faint light on all objects
+        mvp.directionalLight(0, 150, 150, 0, 1, 0); // faint light on all objects
 
         // color
         sunColor.beginDraw();

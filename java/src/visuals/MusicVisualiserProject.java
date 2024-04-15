@@ -51,7 +51,7 @@ public class MusicVisualiserProject extends Visual {
         tomato = loadShape("tomato.obj");
         sunTomato = loadShape("tomato.obj");
         sunTomato.disableStyle();
-        planetTomato = loadShape("tomato.obj");
+        planetTomato = loadShape("tomatoBW.obj");
 
         imageMode(CENTER);
 
