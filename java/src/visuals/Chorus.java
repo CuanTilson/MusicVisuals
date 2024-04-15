@@ -168,6 +168,7 @@ public class Chorus {
 
     // Method to render the Chorus visual
     public void render() {
+        mvp.noLights();
         mvp.lights();
         mvp.translate(mvp.width / 2, mvp.height / 2);
         drawCylinder();
