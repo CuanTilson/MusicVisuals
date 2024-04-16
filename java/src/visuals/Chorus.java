@@ -90,12 +90,25 @@ public class Chorus {
     void drawFloatingTomatoes() {
         float amplitude = mvp.getSmoothedAmplitude();
         float tomatoSize = PApplet.map(amplitude, 0, 1, 20, 1000) * 600; // Map amplitude to larger tomato size range
+        float rotationSpeed = 0.02f; // Adjust the rotation speed
+
         for (int i = 0; i < numTomatoes; i++) {
             // Check if the tomato's position lies within the cylinder
             if (isInsideCylinder(tomatoPositions[i])) {
                 mvp.pushMatrix();
                 mvp.translate(tomatoPositions[i].x, tomatoPositions[i].y, tomatoPositions[i].z);
                 mvp.scale(tomatoSize / 75.0f); // Scale the tomato size based on amplitude
+
+                // Calculate the rotation angles for the current tomato based on its index
+                float tomatoRotationY = mvp.frameCount * rotationSpeed + i * 0.1f; // Adjust the rotation speed
+                                                                                   // multiplier as needed
+                float tomatoRotationZ = mvp.frameCount * rotationSpeed + i * 0.2f; // Adjust the rotation speed
+                                                                                   // multiplier as needed
+
+                // Rotate the tomato around the y-axis (vertical axis)
+                mvp.rotateY(tomatoRotationY);
+                // Spin the tomato around its own axis
+                mvp.rotateZ(tomatoRotationZ);
 
                 tomato(mvp);
                 mvp.popMatrix();
