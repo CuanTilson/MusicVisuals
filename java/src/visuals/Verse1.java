@@ -10,6 +10,13 @@ public class Verse1 extends Visual {
     PGraphics sunColor;
 
     float move = 0;
+    float[] camPos;
+    int camCounter;
+    float[] camMovement;
+    float camAngle;
+    float camDist;
+
+    float amp;
 
     Verse1(MusicVisualiserProject mvp) {
         this.mvp = mvp;
@@ -30,18 +37,48 @@ public class Verse1 extends Visual {
 
         this.sunColor = mvp.createGraphics(width, height, mvp.P3D);
 
+        this.camPos = new float[3];
+        this.camPos[2] = 120;// infront of sun
+        this.camPos[0] = this.camPos[1] = 0;
+        this.camCounter = 0;
+        this.camMovement = new float[2];
+        this.camAngle = 0;
+        this.camDist = (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
+
+        // step size to go from initial posZ to final in 5 seconds in 60 frame rate
+        this.camMovement[0] = (camDist - camPos[2]) / (60 * 5);
+
     }
 
     public void render(int width, int height) {
+
         mvp.translate(width / 2, height / 2); // center the window
         mvp.colorMode(PApplet.HSB); // Set color mode to HSB
 
         move = (float) ((move + 0.5) % 255); // 0.01 good
+        amp = mvp.getSmoothedAmplitude() * 8000;
+        move = 35 + mvp.getSmoothedAmplitude() * 3500;
+
+        // Camera
+        camCounter++;
+
+        if (60 * 5 > camCounter) {
+            camPos[2] += camMovement[0];
+        } else {
+            camAngle += QUARTER_PI / (60 * 10);
+            camPos[1] = -mvp.sin(camAngle) * camDist * 1.2f;
+            camPos[2] = camDist - mvp.sin(camAngle) * camDist + 1;
+        }
+
+        mvp.camera(camPos[0], camPos[1], camPos[2],
+                0, 0, 0f,
+                0f, 1f, 0f);
 
         // lighting
-        // mvp.lights();
+        PVector dLighVector = new PVector(-camPos[0], -camPos[1], -camPos[2]);
+        dLighVector.normalize();
         mvp.pointLight(move, 255, 150, 0, 0, 0); // light from sun
-        mvp.directionalLight(0, 150, 150, 0, 1, 0); // faint light on all objects
+        mvp.directionalLight(0, 200, 150, dLighVector.x, dLighVector.y, dLighVector.z); // faint light on all objects
 
         // color
         sunColor.beginDraw();
@@ -53,12 +90,6 @@ public class Verse1 extends Visual {
         // animating solar system
         animate(sun);
 
-        // camera
-        // top down view
-        // mvp.camera(width / 2, -300,
-        // (300), // eye position
-        // width / 2, height / 2, (float) 0, // center of the scene
-        // (float) 0, (float) 1, (float) 0);
     }
 
     public void animate(Planet p) {
@@ -101,14 +132,16 @@ public class Verse1 extends Visual {
         // tomato tilt correction
         mvp.rotateX(PI);
 
-        mvp.scale(30 * (p.size / 2));
+        float scale = 30 * (p.size / 2);
 
         // texture the sun
         if (p == sun) {
+            mvp.scale(scale + amp);
             mvp.sunTomato.setTexture(sunColor);
             mvp.emissive(150);
             mvp.shape(mvp.sunTomato);
         } else {
+            mvp.scale(scale);
             mvp.emissive(0);
             mvp.shape(mvp.planetTomato);
         }

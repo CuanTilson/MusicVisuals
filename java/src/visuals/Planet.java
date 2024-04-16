@@ -39,7 +39,7 @@ public class Planet extends Visual {
 
         for (int i = 0; i < nBodies; i++) {
             float newSize = random(size / 5, size / 3) + i * 2;
-            float newDist = 80 * (i + 1) + 20;
+            float newDist = 80 * (i + 1) + 30;
             if (nBodies == 1) {
                 newDist = 40;
             }
