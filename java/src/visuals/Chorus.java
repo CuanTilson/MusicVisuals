@@ -181,7 +181,12 @@ public class Chorus {
 
     // Method to render the Chorus visual
     public void render() {
-        mvp.noLights();
+        // Reset camera position and lighting to default
+        mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2,
+                mvp.height / 2, 0, 0, 1, 0);
+        mvp.ambientLight(128, 128, 128);
+        mvp.directionalLight(192, 192, 192, -1, -1, -1);
+
         mvp.lights();
         mvp.translate(mvp.width / 2, mvp.height / 2);
         drawCylinder();
