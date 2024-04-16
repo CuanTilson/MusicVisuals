@@ -14,6 +14,7 @@ public class Bridge extends PApplet
     int h;
     int increase;
     int scl = 20;
+    int cx,cy;
 
     // Reference to the main MusicVisualiserProject object
 
@@ -21,6 +22,9 @@ public class Bridge extends PApplet
     public Bridge(MusicVisualiserProject mvp) {
         this.mvp = mvp;
         increase = 1000;
+        cx = mvp.width/4;
+        cy = mvp.height/4;
+
 
 
         
@@ -39,6 +43,7 @@ public class Bridge extends PApplet
         // mvp.fill(255);
         // mvp.text("Bridge", mvp.width / 2, mvp.height / 2);
         drawTerrain();
+        SpinTomatos();
     }
 
     public void drawTerrain()
@@ -71,11 +76,24 @@ public class Bridge extends PApplet
             mvp.beginShape(TRIANGLE_STRIP);
             for (int x = 0;  x < cols; x++){
                 //rect(x *scl, y*scl, scl,scl);
+                float vertHue = map(x, 0, mvp.getAudioBuffer().size(), 10, 165);
+                mvp.stroke(vertHue, 255,255);
                 mvp.vertex(x*scl, y*scl, terrain[x][y]);
                 mvp.vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
 
             }
             mvp.endShape();
+        }
+    }
+
+    public void SpinTomatos()
+    {
+        for (int i = 0; i < mvp.getAudioBuffer().size(); i++)
+        {
+            float CircleHue = map(i, 0, mvp.getAudioBuffer().size(), 165, 256);
+            stroke(CircleHue, 255, 255);
+            fill(0);
+            circle(100, 100, smoothedAmplitude * 10 * 3);
         }
     }
 }
