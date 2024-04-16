@@ -2,7 +2,8 @@ package visuals;
 
 import processing.core.*;
 
-public class Bridge {
+public class Bridge extends PApplet
+{
 
     // Reference to the main MusicVisualiserProject object
     MusicVisualiserProject mvp;
