@@ -4,7 +4,12 @@ import processing.core.*;
 
 public class Bridge extends PApplet
 {
-
+    int cols, rows;
+    int scl = 20;
+    float[][] terrain;
+    int w = 2048;
+    int h  = 1500;
+    float flying;
     // Reference to the main MusicVisualiserProject object
     MusicVisualiserProject mvp;
 
