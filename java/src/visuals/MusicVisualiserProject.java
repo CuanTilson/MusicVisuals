@@ -120,9 +120,8 @@ public class MusicVisualiserProject extends Visual {
         calculateAverageAmplitude();
 
         //int currentSection = getCurrentSongSection(currentTime);
-        // int currentSection = 2;
         int currentSection = 6;
-        
+
         background(0);
 
         switch (currentSection) {
@@ -150,7 +149,7 @@ public class MusicVisualiserProject extends Visual {
                 chorus.render();
                 break;
             case 6: // Bridge
-                bridge.render();
+                bridge.render(width, height);
                 break;
             case 7: // Chorus 3 (or any additional sections)
                 chorus.render();
