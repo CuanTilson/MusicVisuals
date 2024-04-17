@@ -36,13 +36,13 @@ public class Bridge extends PApplet
         cy = h/4;
         smoothedAmplitude = mvp.getSmoothedAmplitude();
         amplitude = smoothedAmplitude * 6000;
-        // Text saying Chorus centred on screen
-        // mvp.textSize(32);
-        // mvp.textAlign(PConstants.CENTER, PConstants.CENTER);
-        // mvp.fill(255);
-        // mvp.text("Bridge", mvp.width / 2, mvp.height / 2);
+
+        mvp.tomato.rotateX(+50); // Rotate the model
+        mvp.tomato.rotateY(+50); // Rotate the model
+
+
         drawTerrain();
-        drawTomatos();
+        drawTomatoes();
     }
 
     public void drawTerrain()
@@ -82,25 +82,33 @@ public class Bridge extends PApplet
         }
     }
 
-    public void drawTomatos() {
+    public void drawTomatoes() {
         mvp.pushMatrix();
-
-        float tomatoDiameter = (float) (min(w, h) * 0.2); // Adjust the size of the circle
-        float tomatoX = mvp.width / 2; // X-coordinate of the circle
+    
+        float tomatoDiameter = (float) (min(w, h) * 0.0000004); // Adjust the size of the circle
         float tomatoY = (float) ((mvp.height / 2) * 2.25); // Y-coordinate of the circle
-        
+    
         // Translate the coordinates to match the terrain translation
         mvp.translate(w/2, h/2);
         mvp.rotateX(PI/2);
-
         mvp.translate(-w/2, -h/2);
         
-        // Draw the giant circle
-        mvp.noFill();
-        mvp.stroke(255); // Adjust the stroke color
-        mvp.shape(mvp.tomato, tomatoX, tomatoY, tomatoDiameter + amplitude, tomatoDiameter + amplitude);
-
+        // Array to store tomato positions
+        float[][] tomatoPositions = {
+            {mvp.width / 2, tomatoY},
+            {mvp.width / 2 + 1000, tomatoY + 300},
+            {mvp.width / 2 - 700, tomatoY + 200},
+            {mvp.width / 2 - 400, tomatoY - 200},
+            {mvp.width / 2 + 500, tomatoY - 100},
+            {mvp.width / 2 + 1200, tomatoY - 250},
+        };
+    
+        // Draw the tomatoes in a loop
+        for (float[] pos : tomatoPositions) {
+            float tomatoX = pos[0];
+            mvp.shape(mvp.tomato, tomatoX, pos[1], tomatoDiameter + (amplitude - 160), tomatoDiameter + (amplitude - 160));
+        }
+    
         mvp.popMatrix();
-
-    }
+    }    
 }
