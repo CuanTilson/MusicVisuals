@@ -12,28 +12,27 @@ public class Bridge extends PApplet
     float smoothedAmplitude;
     int w;
     int h;
-    int increase;
     int scl = 20;
-    int cx,cy;
+    int increase = 600;
 
     // Reference to the main MusicVisualiserProject object
 
     // Constructor that accepts a MusicVisualiserProject object
     public Bridge(MusicVisualiserProject mvp) {
         this.mvp = mvp;
-        increase = 600;
 
     }
 
     // Method to render the Chorus visual
     public void render(int width, int height) {
+
+        mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2, mvp.height / 2, 0, 0, 1, 0);
+        
         w = width + increase;
         h = height + increase;
         cols = w / scl;
         rows = h / scl;
         terrain = new float[cols][rows];
-        cx = w/4;
-        cy = h/4;
         smoothedAmplitude = mvp.getSmoothedAmplitude();
         amplitude = smoothedAmplitude * 6000;
 
@@ -110,5 +109,5 @@ public class Bridge extends PApplet
         }
     
         mvp.popMatrix();
-    }    
+    }
 }

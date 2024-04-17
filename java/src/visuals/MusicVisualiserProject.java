@@ -35,7 +35,7 @@ public class MusicVisualiserProject extends Visual {
 
     public void settings() {
         fullScreen(P3D);
-        // size(1000, 1000, P3D);
+        //size(1000, 1000, P3D);
         // x = width / 2;
         // y = height / 2;
         // z = 0;
@@ -119,8 +119,8 @@ public class MusicVisualiserProject extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
 
-        // int currentSection = getCurrentSongSection(currentTime);
-        int currentSection = 2;
+        int currentSection = getCurrentSongSection(currentTime);
+        //int currentSection = 2;
 
         background(0);
 
@@ -130,7 +130,7 @@ public class MusicVisualiserProject extends Visual {
                 // verse1.test(width, height);
                 break;
             case 1: // Pre-Chorus 1
-                preChorus.render();
+                preChorus.render(width, height);
                 break;
             case 2: // Chorus 1
                 chorus.render();
@@ -143,7 +143,7 @@ public class MusicVisualiserProject extends Visual {
                 }
                 break;
             case 4: // Pre-Chorus 2
-                preChorus.render();
+                preChorus.render(width, height);
                 break;
             case 5: // Chorus 2
                 chorus.render();
