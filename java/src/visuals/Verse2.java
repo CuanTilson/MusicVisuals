@@ -109,6 +109,8 @@ public class Verse2 {
 
         mvp.blendMode(mvp.BLEND);
         updateCD();
+
+        System.out.println(mvp.getAudioPlayer().position());
     }
 
     public void createMask(int j) {
@@ -131,7 +133,7 @@ public class Verse2 {
         x2 = width / 2;
         y2 = height / 2;
 
-        step = 5;
+        step = 10;
         float h = mvp.map(j, 0, bandCount - 1, 0, 240);
 
         shiftCounter[j] += shiftDir[j] * j;
@@ -144,7 +146,7 @@ public class Verse2 {
         h += shiftCounter[j];
 
         float transparency = 255;
-        float brightness = 255; // 150 for ADD mode
+        float brightness = 150; // 150 for ADD mode
 
         if (j > 0) {
             start = curr = mvp.color(255 - h, 255, brightness, transparency);
@@ -196,7 +198,7 @@ public class Verse2 {
         band[i].pushMatrix();
         band[i].translate(width / 2, height / 2);
 
-        // mvp.blendMode(mvp.ADD);
+        mvp.blendMode(mvp.ADD);
 
         if (i > 0) {
             // blob shape
