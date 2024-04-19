@@ -14,6 +14,8 @@ As part of our Object Oriented Programming module, we are required to create a M
 
 We choose [Aserejé (The Ketchup Song) [Spanish Version]](https://github.com/CuanTilson) by Las Ketchup
 
+https://github.com/CuanTilson/MusicVisuals/assets/20033197/35debb43-4cfa-438b-a5b6-cef8ae9eba9a
+
 [![YouTube](https://img.youtube.com/vi/arZZw8NyPq8/0.jpg)](https://www.youtube.com/watch?v=arZZw8NyPq8)
 
 We choose this song as it was [top of the charts in 2002](https://top40-charts.com/chart.php?cid=31&date=2002-11-23), the year we were born.
