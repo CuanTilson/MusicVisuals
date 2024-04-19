@@ -1,7 +1,6 @@
 package visuals;
 
 import ie.tudublin.*;
-import processing.core.PImage;
 import processing.core.PShape;
 
 public class MusicVisualiserProject extends Visual {
@@ -18,9 +17,6 @@ public class MusicVisualiserProject extends Visual {
     PShape sunTomato;
     PShape planetTomato;
 
-    // Rendering
-    float x, y, z;
-
     // Define song section start times
     float[] songSectionStartTimes = {
             0, // Verse 1
@@ -35,10 +31,7 @@ public class MusicVisualiserProject extends Visual {
 
     public void settings() {
         fullScreen(P3D);
-        //size(1000, 1000, P3D);
-        // x = width / 2;
-        // y = height / 2;
-        // z = 0;
+        // size(1550, 1080, P3D);
     }
 
     public void setup() {
@@ -120,7 +113,7 @@ public class MusicVisualiserProject extends Visual {
         calculateAverageAmplitude();
 
         int currentSection = getCurrentSongSection(currentTime);
-        //int currentSection = 2;
+        // int currentSection = 2;
 
         background(0);
 
