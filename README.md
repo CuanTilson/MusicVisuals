@@ -12,7 +12,7 @@ As part of our Object Oriented Programming module, we are required to create a M
 
 ## Song Chosen
 
-We choose [Aserejé (The Ketchup Song) [Spanish Version]](https://github.com/CuanTilson) by Las Ketchup
+We choose [Aserejé (The Ketchup Song) [Spanish Version]](https://www.youtube.com/watch?v=arZZw8NyPq8) by Las Ketchup
 
 https://github.com/CuanTilson/MusicVisuals/assets/20033197/35debb43-4cfa-438b-a5b6-cef8ae9eba9a
 
