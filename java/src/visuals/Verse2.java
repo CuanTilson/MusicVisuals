@@ -33,6 +33,11 @@ public class Verse2 {
     float[] smoothedBands;
 
     int cdPhase;
+    int moveBandCounter;
+    float[] mbX;
+    float[] mbY;
+    float currentDist;
+    float currentRotation;
 
     float panOutDist;
 
@@ -68,6 +73,11 @@ public class Verse2 {
         this.colorShift = new int[bandCount];
         this.shiftCounter = new int[bandCount];
         this.shiftDir = new int[bandCount];
+
+        this.moveBandCounter = 0;
+        this.mbX = new float[bandCount];
+        this.mbY = new float[bandCount];
+        this.currentDist = this.currentRotation = 0;
 
         for (int i = 0; i < bandCount; i++) {
             this.band[i] = mvp.createGraphics(width, height, mvp.P3D);
@@ -109,8 +119,6 @@ public class Verse2 {
 
         mvp.blendMode(mvp.BLEND);
         updateCD();
-
-        System.out.println(mvp.getAudioPlayer().position());
     }
 
     public void createMask(int j) {
@@ -140,7 +148,7 @@ public class Verse2 {
 
         if ((h + shiftCounter[j]) > 230) {
             shiftDir[j] = -1;
-        } else if ((h + shiftCounter[j]) < 20) {
+        } else if ((h + shiftCounter[j]) < 5) {
             shiftDir[j] = 1;
         }
         h += shiftCounter[j];
@@ -251,7 +259,7 @@ public class Verse2 {
         rotate[i] = (rotate[i] + rot[i]) % mvp.TWO_PI;
 
         bandMask[i].mask(band[i]);
-        mvp.image(bandMask[i], width / 2, height / 2 + panOutDist, width, height);
+        mvp.image(bandMask[i], width / 2 + mbX[i], height / 2 + mbY[i], width, height);
 
         return;
     }
@@ -293,7 +301,38 @@ public class Verse2 {
 
     public void panOut() {
         // move CD out of frame
-        panOutDist += 3;
+        panOutDist += 6;
         return;
+    }
+
+    public void moveBand() {
+        moveBandCounter++;
+
+        float bands = bandCount - 1;
+        float angle = mvp.TWO_PI / bands;
+        float dist = width / 4;
+        float distChange = 5;
+        float rotationSpeed = 0.02f;
+
+        if (60 * 5 > moveBandCounter) {
+            return;
+        }
+
+        for (int i = 0; i < bands; i++) {
+            float newAngle = (angle * i + currentRotation) % mvp.TWO_PI;
+            mbX[i + 1] = currentDist * mvp.sin(newAngle);
+            mbY[i + 1] = currentDist * mvp.cos(newAngle);
+
+        }
+
+        currentRotation += rotationSpeed;
+
+        if (currentDist < dist) {
+            currentDist += distChange;
+        }
+
+        currentDist += panOutDist;
+        mbY[0] += panOutDist;
+
     }
 }

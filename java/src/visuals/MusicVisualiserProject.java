@@ -131,7 +131,11 @@ public class MusicVisualiserProject extends Visual {
             case 3: // Verse 2
                 verse2.render();
 
-                if (currentTime > songSectionStartTimes[4] - 5) {
+                if (verse2.cdPhase > 0) {
+                    verse2.moveBand();
+                }
+
+                if (currentTime > songSectionStartTimes[4] - 3) {
                     verse2.panOut();
                 }
                 break;
