@@ -328,11 +328,11 @@ public class Verse2 {
         float bands = bandCount - 1; // do not take elliptical blob for this
         float angle = mvp.TWO_PI / bands;
         float dist = width / 4; // max dist
-        float distChange = 5;
-        float rotationSpeed = 0.02f;
+        float distChange = 10;
+        float rotationSpeed = 0.03f;
 
         // after 5 seconds
-        if (60 * 5 > moveBandCounter) {
+        if (60 * 3 > moveBandCounter) {
             return;
         }
 
