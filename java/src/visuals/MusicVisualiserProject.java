@@ -1,3 +1,8 @@
+/*
+ * Authors: Cuan Tilson, Sagar Singh, Hemant Sundarrajan
+ * 5 key visuals for the song "Las Ketchup"
+ */
+
 package visuals;
 
 import ie.tudublin.*;
@@ -42,9 +47,9 @@ public class MusicVisualiserProject extends Visual {
         loadAudio("KetchupSongES.mp3");
 
         tomato = loadShape("tomato.obj");
-        sunTomato = loadShape("tomato.obj");
+        sunTomato = loadShape("tomato.obj"); // for verse1
         sunTomato.disableStyle();
-        planetTomato = loadShape("tomatoBW.obj");
+        planetTomato = loadShape("tomatoBW.obj"); // for verse1
 
         imageMode(CENTER);
 
@@ -58,7 +63,7 @@ public class MusicVisualiserProject extends Visual {
 
     public void keyPressed() {
         if (key == ' ') {
-            togglePlay();
+            togglePlay(); // pause function
         }
         if (key == 'r') {
             restartSong();
@@ -71,11 +76,11 @@ public class MusicVisualiserProject extends Visual {
                 getAudioPlayer().cue(0);
                 getAudioPlayer().play();
             } else {
-                getAudioPlayer().play((int) pausedPosition);
+                getAudioPlayer().play((int) pausedPosition); // continue playing at paused position
             }
-        } else {
+        } else { // if playing
             getAudioPlayer().pause();
-            pausedPosition = getAudioPlayer().position();
+            pausedPosition = getAudioPlayer().position(); // record paused position in song
         }
     }
 
@@ -113,14 +118,13 @@ public class MusicVisualiserProject extends Visual {
         calculateAverageAmplitude();
 
         // int currentSection = getCurrentSongSection(currentTime);
-        int currentSection = 3;
+        int currentSection = 0;
 
         background(0);
 
         switch (currentSection) {
             case 0: // Verse 1
                 verse1.render(width, height);
-                // verse1.test(width, height);
                 break;
             case 1: // Pre-Chorus 1
                 preChorus.render(width, height);
@@ -131,10 +135,12 @@ public class MusicVisualiserProject extends Visual {
             case 3: // Verse 2
                 verse2.render();
 
+                // move the bands around the cd after the cd has rolled in
                 if (verse2.cdPhase > 0) {
                     verse2.moveBand();
                 }
 
+                // In the last 3 seconds of the song, move all visuals away from the screen
                 if (currentTime > songSectionStartTimes[4] - 3) {
                     verse2.panOut();
                 }

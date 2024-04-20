@@ -1,3 +1,5 @@
+
+// By Sagar Singh
 package visuals;
 
 import ie.tudublin.Visual;
@@ -24,10 +26,11 @@ public class Planet extends Visual {
 
         this.size = size;
 
+        // orbit rotation
         this.position = random(TWO_PI);
-        // this.orbitSpeed = random((float) 0.002, (float) 0.01);
         this.orbitSpeed = orbitSpeed;
 
+        // planet rotation and positioning
         this.rotation = 0;
         this.rotationSpeed = random((float) 0.01, (float) 0.05);
         this.tiltX = random(-QUARTER_PI, 0);
@@ -42,7 +45,7 @@ public class Planet extends Visual {
             float newSize = random(size / 6, size / 4) + i * 2;
             float newDist = 80 * (i + 1) + 30;
             float newOrbitSpeed = map(i, 0, nBodies, 0.015f, 0.001f);
-            if (nBodies == 1) {
+            if (nBodies == 1) { // moon dist closer
                 newDist = 40;
             }
             orbitingBody[i] = new Planet(newDist, newSize, newOrbitSpeed);
