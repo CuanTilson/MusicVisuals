@@ -165,47 +165,4 @@ public class Verse1 extends Visual {
 
     }
 
-    public void test(int width, int height) {
-        mvp.background(0);
-
-        mvp.translate(width / 2, height / 2); // center the window
-        mvp.colorMode(PApplet.HSB); // Set color mode to HSB
-
-        mvp.lights();
-        mvp.noStroke();
-
-        mvp.pushMatrix();
-        mvp.translate(0, 0);
-        mvp.fill(0, 255, 255);
-        mvp.box(100);
-        mvp.popMatrix();
-
-        mvp.pushMatrix();
-
-        mvp.translate(300, 0);
-        mvp.fill(150, 255, 255);
-        mvp.box(50);
-        mvp.popMatrix();
-
-        mvp.pushMatrix();
-        mvp.translate(0, 300);
-        mvp.fill(100, 255, 255);
-        mvp.box(50);
-        mvp.popMatrix();
-
-        mvp.pushMatrix();
-        mvp.translate(-300, 0);
-        mvp.fill(200, 255, 255);
-        mvp.box(50);
-        mvp.popMatrix();
-
-        mvp.pushMatrix();
-        mvp.translate(0, -300);
-        mvp.fill(50, 255, 255);
-        mvp.box(50);
-        mvp.popMatrix();
-
-        // camera
-    }
-
 }
