@@ -21,9 +21,9 @@ public class Verse1 extends Visual {
     Verse1(MusicVisualiserProject mvp) {
         this.mvp = mvp;
 
-        sun = new Planet(0, 100); // since zero distance, no translation
+        sun = new Planet(0, 100, 0); // since zero distance, no translation
 
-        planetCount = 6;
+        planetCount = 7; // 6
         sun.spawnOrbitingBodies(planetCount);
 
         sun.orbitingBody[planetCount - 2].spawnOrbitingBodies(1); // second last planet to have a moon
@@ -38,12 +38,12 @@ public class Verse1 extends Visual {
         this.sunColor = mvp.createGraphics(width, height, mvp.P3D);
 
         this.camPos = new float[3];
-        this.camPos[2] = 120;// infront of sun
+        this.camPos[2] = 150;// infront of sun
         this.camPos[0] = this.camPos[1] = 0;
         this.camCounter = 0;
         this.camMovement = new float[2];
         this.camAngle = 0;
-        this.camDist = (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
+        this.camDist = 1.2f * (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
 
         // step size to go from initial posZ to final in 5 seconds in 60 frame rate
         this.camMovement[0] = (camDist - camPos[2]) / (60 * 5);
@@ -64,9 +64,9 @@ public class Verse1 extends Visual {
 
         if (60 * 5 > camCounter) {
             camPos[2] += camMovement[0];
-        } else {
+        } else if (camAngle < QUARTER_PI / 3) {
             camAngle += QUARTER_PI / (60 * 10);
-            camPos[1] = -mvp.sin(camAngle) * camDist * 1.2f;
+            camPos[1] = -mvp.sin(camAngle) * camDist;
             camPos[2] = camDist - mvp.sin(camAngle) * camDist + 1;
         }
 
@@ -167,53 +167,40 @@ public class Verse1 extends Visual {
         mvp.colorMode(PApplet.HSB); // Set color mode to HSB
 
         mvp.lights();
-        // mvp.pointLight(move * 10, 100, 255, 0, 0, 0); // color change
-        // mvp.pointLight(move * 10, 0, 255, 0, 0, 0); // color change
-
-        // mvp.ambientLight(0, 0, 50);
-        // mvp.directionalLight(0, 0, 150, 0, 0, -1);
-
-        move = (float) ((move + 0.1) % 25); // 0.01 good
+        mvp.noStroke();
 
         mvp.pushMatrix();
         mvp.translate(0, 0);
-
-        // orientation
-        mvp.rotateX(-QUARTER_PI);// -PI/4 to 0
-        mvp.rotateZ(-QUARTER_PI);// -PI/4 to PI/4
-
-        // rotation
-        mvp.rotateY(move);// 0.005 to 0.03
-
-        // rotation tilt
-        mvp.rotateX(QUARTER_PI / 3); // 0 to PI/4
-
-        // object tilt correction
-        mvp.rotateX(QUARTER_PI);
-
-        // color;
-        sunColor.beginDraw();
-        sunColor.colorMode(PApplet.HSB);
-        sunColor.fill(move * 10, 150, 200);
-        sunColor.box(width);
-        sunColor.endDraw();
-
-        mvp.tomato.disableStyle();
-        // mvp.tomato.setTexture(sunColor);
-        mvp.tomato.setFill(color(200, 255, 255));
-
-        // mvp.tomato.setEmissive(1);
-        mvp.emissive(150); // 150
-        mvp.scale(1000);
-        mvp.shape(mvp.tomato);
+        mvp.fill(0, 255, 255);
+        mvp.box(100);
         mvp.popMatrix();
 
-        mvp.translate(300, 0, 0);
-        mvp.noStroke();
-        mvp.fill(0, 255, 255);
-        mvp.emissive(0);
-        mvp.sphere(50);
+        mvp.pushMatrix();
 
+        mvp.translate(300, 0);
+        mvp.fill(150, 255, 255);
+        mvp.box(50);
+        mvp.popMatrix();
+
+        mvp.pushMatrix();
+        mvp.translate(0, 300);
+        mvp.fill(100, 255, 255);
+        mvp.box(50);
+        mvp.popMatrix();
+
+        mvp.pushMatrix();
+        mvp.translate(-300, 0);
+        mvp.fill(200, 255, 255);
+        mvp.box(50);
+        mvp.popMatrix();
+
+        mvp.pushMatrix();
+        mvp.translate(0, -300);
+        mvp.fill(50, 255, 255);
+        mvp.box(50);
+        mvp.popMatrix();
+
+        // camera
     }
 
 }

@@ -17,7 +17,7 @@ public class Planet extends Visual {
     float tiltX, tiltZ; // planet tilt orientation for spin on axis
     float tiltOffset; // offset from spinning
 
-    public Planet(float dist, float size) {
+    public Planet(float dist, float size, float orbitSpeed) {
         this.dist = dist;
         this.orbitVector = new PVector(1, 0, 0);
         this.orbitVector.mult(this.dist);
@@ -25,7 +25,8 @@ public class Planet extends Visual {
         this.size = size;
 
         this.position = random(TWO_PI);
-        this.orbitSpeed = random((float) 0.002, (float) 0.01);
+        // this.orbitSpeed = random((float) 0.002, (float) 0.01);
+        this.orbitSpeed = orbitSpeed;
 
         this.rotation = 0;
         this.rotationSpeed = random((float) 0.01, (float) 0.05);
@@ -38,12 +39,13 @@ public class Planet extends Visual {
         this.orbitingBody = new Planet[nBodies];
 
         for (int i = 0; i < nBodies; i++) {
-            float newSize = random(size / 5, size / 3) + i * 2;
+            float newSize = random(size / 6, size / 4) + i * 2;
             float newDist = 80 * (i + 1) + 30;
+            float newOrbitSpeed = map(i, 0, nBodies, 0.015f, 0.001f);
             if (nBodies == 1) {
                 newDist = 40;
             }
-            orbitingBody[i] = new Planet(newDist, newSize);
+            orbitingBody[i] = new Planet(newDist, newSize, newOrbitSpeed);
         }
     }
 
