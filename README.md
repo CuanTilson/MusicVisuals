@@ -2,13 +2,21 @@
 
 # Music Visualiser Assignment
 
-As part of our Object Oriented Programming module, we are required to create a Music Visualiser. This assignment challenges us to create a program that generates an abstract visual representation of a chosen song. By utilising audio analysis techniques and creative coding, we aim to produce a visually captivating experience that reflects the mood, tempo, and structure of the song.
+This is a music visualiser created for the song “The Ketchup Song” by Aserejé. There are 5 sections in the song structurally, and each section has its creative visuals expressed through responsive and theme-oriented designs.  
+
+The project aimed to create visuals that encapsulate and reflect the song’s structure, tempo and rhythm. In addition, demonstrated solid understanding and use of object-oriented programming, Java, Minim library and Processing library; teamwork and collaboration.  
+
+[YouTube Video Link]()
+
+For an in-depth explanation of the project, go to the documentation linked below.
+[Documentation Link](https://tudublin-my.sharepoint.com/:w:/g/personal/c22731795_mytudublin_ie/EdwaNYgvJyRIhURhicY35C8BIxX8P5N1tUtQZr1AFkpqDg?e=nKQ7ez)
+
 
 ## Authors
 
-- [Sagar Singh](https://github.com/SagarSingh-portfolio) | C22731795
-- [Hemant Sundarrajan](https://github.com/HemantSun) | C22440886
-- [Cúán Tilson](https://github.com/CuanTilson) | C22385233
+- [Sagar Singh](https://github.com/SagarSingh-portfolio)| C22731795
+- [Hemant Sundarrajan](https://github.com/HemantSun) 	| C22440886
+- [Cúán Tilson](https://github.com/CuanTilson) 		| C22385233
 
 ## Song Chosen
 
@@ -27,103 +35,5 @@ The song has a narrow theme that we could really play with the visuals and be cr
 
 The song is about a young man named “Diego” who enters a nightclub while attempting to sing his favorite song “Rapper’s Delight” by the Sugarhill Gang. His Spanish gibberish imitation of that song makes The Ketchup song’s main chorus
 
-## Music Visualiser Composition
-
-#### Verse 1
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-#### Pre-chorus
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-#### Chorus
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-#### Verse 2
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-#### Bridge
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-## What I Am Most Proud of in the Assignment
-
-#### Sagar Singh
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-#### Hemant Sundarrajan
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque gravida libero, sit amet rutrum lacus dignissim vel. Etiam orci risus, molestie sed elementum eget, pulvinar vitae nisl. Nunc non cursus urna, nec gravida enim. Etiam ac mauris ornare, malesuada orci congue, tincidunt justo. Donec consequat ante in sodales finibus.
-
-#### Cúán Tilson
-
-Created a tomato model in Blender. Learned how to make colour maps for the texturing of the tomato model.
+# Instructions
+Simply, Clone this repo and run Java on your IDE. This project was tested and run on Visual Studio Code. Use the space bar to pause/play the music.
