@@ -12,8 +12,8 @@ public class Prechorus extends PApplet
     float smoothedAmplitude;
     int w;
     int h;
-    int increase = 600;
     int scl = 20;
+    int increase = 600;
 
     // Reference to the main MusicVisualiserProject object
 
@@ -27,7 +27,7 @@ public class Prechorus extends PApplet
     public void render(int width, int height) {
 
         mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2, mvp.height / 2, 0, 0, 1, 0);
-
+        
         w = width + increase;
         h = height + increase;
         cols = w / scl;
@@ -46,7 +46,7 @@ public class Prechorus extends PApplet
 
     public void drawTerrain()
     {
-        flying  -=  0.05;
+        flying  -=  0.1;
 
         float yoff = flying;
         for (int y = 0;  y  < rows; y++){
