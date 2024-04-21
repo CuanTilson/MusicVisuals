@@ -1,3 +1,5 @@
+// By Sagar Singh
+
 package visuals;
 
 import processing.core.*;
@@ -9,7 +11,7 @@ public class Verse1 extends Visual {
     int planetCount;
     PGraphics sunColor;
 
-    float move = 0;
+    float currentHue;
     float[] camPos;
     int camCounter;
     float[] camMovement;
@@ -21,29 +23,32 @@ public class Verse1 extends Visual {
     Verse1(MusicVisualiserProject mvp) {
         this.mvp = mvp;
 
-        sun = new Planet(0, 100); // since zero distance, no translation
+        sun = new Planet(0, 100, 0); // since zero distance, no translation
 
-        planetCount = 6;
+        planetCount = 7; // default 6
         sun.spawnOrbitingBodies(planetCount);
 
         sun.orbitingBody[planetCount - 2].spawnOrbitingBodies(1); // second last planet to have a moon
         sun.orbitingBody[planetCount - 2].orbitingBody[0].dist = 1; // moon distance
-        sun.orbitingBody[planetCount - 2].orbitingBody[0].orbitSpeed = 0.040f;
+        sun.orbitingBody[planetCount - 2].orbitingBody[0].orbitSpeed = 0.040f; // moon orbit speed
 
         sun.orbitSpeed = 0; // sun does not orbit
         sun.rotationSpeed = 0; // sun does not rotate
         sun.position = 0;
-        sun.tiltX = sun.tiltZ = sun.tiltOffset = 0;
+        sun.tiltX = sun.tiltZ = sun.tiltOffset = 0; // complete symmertical to the XYZ field
 
         this.sunColor = mvp.createGraphics(width, height, mvp.P3D);
+        this.currentHue = 0;
 
         this.camPos = new float[3];
-        this.camPos[2] = 120;// infront of sun
+        this.camPos[2] = 150;// infront of sun
         this.camPos[0] = this.camPos[1] = 0;
         this.camCounter = 0;
         this.camMovement = new float[2];
         this.camAngle = 0;
-        this.camDist = (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
+
+        // the total distance the camera will move to
+        this.camDist = 1.2f * (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
 
         // step size to go from initial posZ to final in 5 seconds in 60 frame rate
         this.camMovement[0] = (camDist - camPos[2]) / (60 * 5);
@@ -55,19 +60,18 @@ public class Verse1 extends Visual {
         mvp.translate(width / 2, height / 2); // center the window
         mvp.colorMode(PApplet.HSB); // Set color mode to HSB
 
-        move = (float) ((move + 0.5) % 255); // 0.01 good
-        amp = mvp.getSmoothedAmplitude() * 8000;
-        move = 35 + mvp.getSmoothedAmplitude() * 3500;
+        amp = mvp.getSmoothedAmplitude() * 8000; // used scale the sun tomato
+        currentHue = 35 + mvp.getSmoothedAmplitude() * 3500; // color change of sun
 
         // Camera
         camCounter++;
 
+        // if 5 seconds have passed
         if (60 * 5 > camCounter) {
-            camPos[2] += camMovement[0];
-        } else {
+            camPos[2] += camMovement[0]; // pan out in Z
+        } else if (camAngle < QUARTER_PI / 3) { // now pan above in Y
             camAngle += QUARTER_PI / (60 * 10);
             camPos[1] = -mvp.sin(camAngle) * camDist * 1.2f;
-            camPos[2] = camDist - mvp.sin(camAngle) * camDist + 1;
         }
 
         mvp.camera(camPos[0], camPos[1], camPos[2],
@@ -75,15 +79,18 @@ public class Verse1 extends Visual {
                 0f, 1f, 0f);
 
         // lighting
-        PVector dLighVector = new PVector(-camPos[0], -camPos[1], -camPos[2]);
+        PVector dLighVector = new PVector(-camPos[0], -camPos[1], -camPos[2]); // lighting towards origin from camera
         dLighVector.normalize();
-        mvp.pointLight(move, 255, 150, 0, 0, 0); // light from sun
-        mvp.directionalLight(0, 200, 150, dLighVector.x, dLighVector.y, dLighVector.z); // faint light on all objects
+        mvp.pointLight(currentHue, 255, 150, 0, 0, 0); // light from sun
 
-        // color
+        // planetTomato is Black and white color, this gives the illusion of them being
+        // red with faint red light on all objects
+        mvp.directionalLight(0, 200, 100, dLighVector.x, dLighVector.y, dLighVector.z);
+
+        // color for sun
         sunColor.beginDraw();
         sunColor.colorMode(PApplet.HSB);
-        sunColor.fill(move, 150, 200);
+        sunColor.fill(currentHue, 150, 200);
         sunColor.box(width);
         sunColor.endDraw();
 
@@ -96,28 +103,26 @@ public class Verse1 extends Visual {
         mvp.pushMatrix();
         mvp.noStroke();
         mvp.fill(255);
-        PVector rotationAxis;
+        PVector rotationAxis; // for orbits
         PVector perpendicular;
 
-        // orbit paths
+        // orbit paths tilting
         if (p == sun.orbitingBody[planetCount - 1 - 2]) {
             rotationAxis = new PVector(0, 1, 5);
         } else if (p == sun.orbitingBody[planetCount - 1]) {
             rotationAxis = new PVector(0, -1, 6);
-        } else if (p == sun.orbitingBody[planetCount - 2].orbitingBody[0]) {
+        } else if (p == sun.orbitingBody[planetCount - 2].orbitingBody[0]) { // moon to have extreme tilt
             rotationAxis = new PVector(0, 2, 1);
         } else {
-            rotationAxis = new PVector(0, 0, 1);
+            rotationAxis = new PVector(0, 0, 1); // default
         }
 
-        perpendicular = p.orbitVector.cross(rotationAxis);
+        perpendicular = p.orbitVector.cross(rotationAxis);// direction of rotation
 
         mvp.rotate(p.position, perpendicular.x, perpendicular.y, perpendicular.z);
         mvp.translate(p.orbitVector.x, p.orbitVector.y, p.orbitVector.z);
 
         mvp.pushMatrix();
-
-        // mvp.sphere(p.size / 2);
 
         // orientation
         mvp.rotateX(p.tiltX);
@@ -138,7 +143,7 @@ public class Verse1 extends Visual {
         if (p == sun) {
             mvp.scale(scale + amp);
             mvp.sunTomato.setTexture(sunColor);
-            mvp.emissive(150);
+            mvp.emissive(150); // material property which ignores other light and emits own
             mvp.shape(mvp.sunTomato);
         } else {
             mvp.scale(scale);
@@ -157,62 +162,6 @@ public class Verse1 extends Visual {
         mvp.popMatrix();
         p.orbit();
         p.rotate();
-
-    }
-
-    public void test(int width, int height) {
-        mvp.background(0);
-
-        mvp.translate(width / 2, height / 2); // center the window
-        mvp.colorMode(PApplet.HSB); // Set color mode to HSB
-
-        mvp.lights();
-        // mvp.pointLight(move * 10, 100, 255, 0, 0, 0); // color change
-        // mvp.pointLight(move * 10, 0, 255, 0, 0, 0); // color change
-
-        // mvp.ambientLight(0, 0, 50);
-        // mvp.directionalLight(0, 0, 150, 0, 0, -1);
-
-        move = (float) ((move + 0.1) % 25); // 0.01 good
-
-        mvp.pushMatrix();
-        mvp.translate(0, 0);
-
-        // orientation
-        mvp.rotateX(-QUARTER_PI);// -PI/4 to 0
-        mvp.rotateZ(-QUARTER_PI);// -PI/4 to PI/4
-
-        // rotation
-        mvp.rotateY(move);// 0.005 to 0.03
-
-        // rotation tilt
-        mvp.rotateX(QUARTER_PI / 3); // 0 to PI/4
-
-        // object tilt correction
-        mvp.rotateX(QUARTER_PI);
-
-        // color;
-        sunColor.beginDraw();
-        sunColor.colorMode(PApplet.HSB);
-        sunColor.fill(move * 10, 150, 200);
-        sunColor.box(width);
-        sunColor.endDraw();
-
-        mvp.tomato.disableStyle();
-        // mvp.tomato.setTexture(sunColor);
-        mvp.tomato.setFill(color(200, 255, 255));
-
-        // mvp.tomato.setEmissive(1);
-        mvp.emissive(150); // 150
-        mvp.scale(1000);
-        mvp.shape(mvp.tomato);
-        mvp.popMatrix();
-
-        mvp.translate(300, 0, 0);
-        mvp.noStroke();
-        mvp.fill(0, 255, 255);
-        mvp.emissive(0);
-        mvp.sphere(50);
 
     }
 
