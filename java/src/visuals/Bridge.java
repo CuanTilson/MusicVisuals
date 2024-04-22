@@ -5,17 +5,14 @@ import processing.core.*;
 public class Bridge extends PApplet
 {
     MusicVisualiserProject mvp;
-    int cols, rows;
-    float[][] terrain;
-    float flying;
-    float amplitude;
-    float smoothedAmplitude;
-    int w;
-    int h;
-    int scl = 20;
-    int increase = 600;
-
-    // Reference to the main MusicVisualiserProject object
+    int cols, rows; //cols and rows of terrain
+    float[][] terrain; 
+    float flying; //speed terrain is flown over
+    float amplitude; //amplitude of song
+    float smoothedAmplitude; //smoothed amplitude of song
+    int w, h; //used to alter terrain to span over width and height
+    int scl = 20; //size of terrain triangles
+    int increase = 600; //amount used to increase width/height
 
     // Constructor that accepts a MusicVisualiserProject object
     public Bridge(MusicVisualiserProject mvp) {
@@ -26,28 +23,38 @@ public class Bridge extends PApplet
     // Method to render the Chorus visual
     public void render(int width, int height) {
 
+        //resets camera when called
         mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2, mvp.height / 2, 0, 0, 1, 0);
         
+        //code used on terrain to increase width and height
         w = width + increase;
         h = height + increase;
+
+        //how column and rows are sized
         cols = w / scl;
         rows = h / scl;
         terrain = new float[cols][rows];
+
+        //amplitude code to get desired amplitdue
         smoothedAmplitude = mvp.getSmoothedAmplitude();
         amplitude = smoothedAmplitude * 6000;
 
-        mvp.tomato.rotateX(+50); // Rotate the model
-        mvp.tomato.rotateY(+50); // Rotate the model
+        // Rotate the tomato model
+        mvp.tomato.rotateX(+50);
+        mvp.tomato.rotateY(+50);
 
-
+        //Calling methods
         drawTerrain();
         drawTomatoes();
     }
 
+    //Method used to draw terrain to screen
     public void drawTerrain()
     {
-        flying  -=  0.05;
+        //speed terrain is flown through at
+        flying  -=  0.1;
 
+        //Utilising pearl noise to create vertex movement
         float yoff = flying;
         for (int y = 0;  y  < rows; y++){
             float xoff  = 0;
@@ -58,19 +65,20 @@ public class Bridge extends PApplet
             yoff +=  0.1;
         }
 
-        
+        //Resets background and unfills terrain
         mvp.background(0);
         mvp.stroke(255);
         mvp.noFill();
         
+        //Translates terrain to flat terrain
         mvp.translate(w/2, h/2);
         mvp.rotateX(PI/2);
-
         mvp.translate(-w/2-increase/2, -h/2);
+
+        //Draws terrain to sceen, and colours in terrain
         for (int y = 0;  y  < rows-1; y++){
             mvp.beginShape(TRIANGLE_STRIP);
             for (int x = 0;  x < cols; x++){
-                //rect(x *scl, y*scl, scl,scl);
                 float vertHue = map(x, 0, mvp.getAudioBuffer().size(), 10, 165);
                 mvp.stroke(vertHue, 255,255);
                 mvp.vertex(x*scl, y*scl, terrain[x][y]);
@@ -81,6 +89,7 @@ public class Bridge extends PApplet
         }
     }
 
+    //Draws Tomatos to screen
     public void drawTomatoes() {
         mvp.pushMatrix();
     
