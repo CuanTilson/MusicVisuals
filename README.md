@@ -14,9 +14,9 @@ For an in-depth explanation of the project, go to the documentation linked below
 
 ## Authors
 
-- [Sagar Singh](https://github.com/SagarSingh-portfolio)| C22731795
-- [Hemant Sundarrajan](https://github.com/HemantSun) 	| C22440886
-- [Cúán Tilson](https://github.com/CuanTilson) 		| C22385233
+- [Sagar Singh](https://github.com/SagarSingh-portfolio)  | C22731795
+- [Hemant Sundarrajan](https://github.com/HemantSun)      | C22440886
+- [Cúán Tilson](https://github.com/CuanTilson)            | C22385233
 
 ## Song Chosen
 
