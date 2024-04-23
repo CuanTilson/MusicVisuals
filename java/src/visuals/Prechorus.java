@@ -52,7 +52,7 @@ public class Prechorus extends PApplet
     public void drawTerrain()
     {
         //speed terrain is flown through at
-        flying  -=  0.1;
+        flying  -=  0.075;
 
         //Utilising pearl noise to create vertex movement
         float yoff = flying;
@@ -105,10 +105,8 @@ public class Prechorus extends PApplet
         float[][] tomatoPositions = {
             {mvp.width / 2, tomatoY},
             {mvp.width / 2 + 1000, tomatoY + 300},
-            {mvp.width / 2 - 700, tomatoY + 200},
-            {mvp.width / 2 - 400, tomatoY - 200},
+            {mvp.width / 2 - 400, tomatoY + 200},
             {mvp.width / 2 + 500, tomatoY - 100},
-            {mvp.width / 2 + 1200, tomatoY - 250},
         };
     
         // Draw the tomatoes in a loop
