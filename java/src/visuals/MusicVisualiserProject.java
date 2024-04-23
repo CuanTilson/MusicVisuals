@@ -35,8 +35,8 @@ public class MusicVisualiserProject extends Visual {
     };
 
     public void settings() {
-        fullScreen(P3D);
-        // size(1550, 1080, P3D);
+        // fullScreen(P3D);
+        size(1366, 768, P3D);
     }
 
     public void setup() {
@@ -103,6 +103,7 @@ public class MusicVisualiserProject extends Visual {
     }
 
     public void draw() {
+
         float currentTime = getAudioPlayer().position() / 1000.0f; // Convert milliseconds to seconds
 
         try {
@@ -117,10 +118,11 @@ public class MusicVisualiserProject extends Visual {
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();
 
-        // int currentSection = getCurrentSongSection(currentTime);
-        int currentSection = 3;
+        int currentSection = getCurrentSongSection(currentTime);
+        // int currentSection = 3;
 
         background(0);
+      
 
         switch (currentSection) {
             case 0: // Verse 1
