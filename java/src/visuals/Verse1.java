@@ -48,7 +48,7 @@ public class Verse1 extends Visual {
         this.camAngle = 0;
 
         // the total distance the camera will move to
-        this.camDist = 1.2f * (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
+        this.camDist = 0.8f * (mvp.height / 2.0f) / mvp.tan(PI * 30.0f / 180.0f);
 
         // step size to go from initial posZ to final in 5 seconds in 60 frame rate
         this.camMovement[0] = (camDist - camPos[2]) / (60 * 5);
@@ -91,7 +91,7 @@ public class Verse1 extends Visual {
         sunColor.beginDraw();
         sunColor.colorMode(PApplet.HSB);
         sunColor.fill(currentHue, 150, 200);
-        sunColor.box(width);
+        sunColor.box(1550);
         sunColor.endDraw();
 
         // animating solar system

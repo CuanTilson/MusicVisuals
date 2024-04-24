@@ -35,8 +35,8 @@ public class MusicVisualiserProject extends Visual {
     };
 
     public void settings() {
-        // fullScreen(P3D);
-        size(1366, 768, P3D);
+        fullScreen(P3D); // for 1920 x 1080 resolution
+        // size(1366, 768, P3D);
     }
 
     public void setup() {
@@ -119,7 +119,7 @@ public class MusicVisualiserProject extends Visual {
         calculateAverageAmplitude();
 
         int currentSection = getCurrentSongSection(currentTime);
-        // int currentSection = 2;
+        // currentSection = 0;
 
         background(0);
 
