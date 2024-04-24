@@ -11,7 +11,7 @@ public class Bridge extends PApplet
     float amplitude; //amplitude of song
     float smoothedAmplitude; //smoothed amplitude of song
     int w, h; //used to alter terrain to span over width and height
-    int scl = 20; //size of terrain triangles
+    int scl = 20; //size of terrain squares
     int increase = 600; //amount used to increase width/height
 
     // Constructor that accepts a MusicVisualiserProject object
@@ -24,7 +24,8 @@ public class Bridge extends PApplet
     public void render(int width, int height) {
 
         //resets camera when called
-        mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2, mvp.height / 2, 0, 0, 1, 0);
+        mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2,
+        mvp.height / 2, 0, 0, 1, 0);
         
         //code used on terrain to increase width and height
         w = width + increase;
@@ -59,7 +60,7 @@ public class Bridge extends PApplet
         for (int y = 0;  y  < rows; y++){
             float xoff  = 0;
             for (int x = 0;  x < cols; x++){
-                terrain[x][y] = map(noise(xoff, yoff) , 0, 1, -amplitude, amplitude);
+                terrain[x][y] = map(noise(xoff, yoff) , 0, 1, -amplitude, amplitude+50);
                 xoff += 0.1;
             }
             yoff +=  0.1;
