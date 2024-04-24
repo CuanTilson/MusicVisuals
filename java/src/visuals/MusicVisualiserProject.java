@@ -1,5 +1,5 @@
 /*
- * Authors: Cuan Tilson, Sagar Singh, Hemant Sundarrajan
+ * Authors: Cúán Tilson, Sagar Singh, Hemant Sundarrajan
  * 5 key visuals for the song "Las Ketchup"
  */
 
