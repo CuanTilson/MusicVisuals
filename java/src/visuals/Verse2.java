@@ -152,7 +152,7 @@ public class Verse2 {
         x2 = width / 2;
         y2 = height / 2;
 
-        step = 10;
+        step = 20;
         float h = mvp.map(j, 0, bandCount - 1, 0, 250); // each bands/blobs colors are different
 
         shiftCounter[j] += shiftDir[j] * j;
