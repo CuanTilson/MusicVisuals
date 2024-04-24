@@ -8,7 +8,7 @@ public class Chorus {
     MusicVisualiserProject mvp;
 
     PVector[] tomatoPositions;
-    int numTomatoes = 75; // Adjust this value to change the number of tomatoes
+    int numTomatoes = 60; // Adjust this value to change the number of tomatoes
     float[] tomatoSpeeds; // Array to store the speed of each tomato
 
     // Tube properties
@@ -33,7 +33,7 @@ public class Chorus {
     void initialiseTomatoes() {
         tomatoPositions = new PVector[numTomatoes];
         tomatoSpeeds = new float[numTomatoes];
-        float buffer = tubeRadius * 0.5f; // Define a buffer size as half of the tube radius
+        float buffer = tubeRadius * 0.4f; // Define a buffer size as half of the tube radius
         float minX = -tubeRadius + buffer;
         float maxX = tubeRadius - buffer;
         float minY = -tubeRadius + buffer;
@@ -170,8 +170,10 @@ public class Chorus {
     public void render() {
         mvp.camera(mvp.width / 2, mvp.height / 2, (mvp.height / 2) / PApplet.tan(PApplet.PI / 6), mvp.width / 2,
                 mvp.height / 2, 0, 0, 1, 0);
-        mvp.ambientLight(128, 128, 128);
-        mvp.directionalLight(192, 192, 192, -1, -1, -1);
+
+        // mvp.ambientLight(128, 128, 128);
+        // mvp.directionalLight(192, 192, 192, -1, -1, -1);
+
         mvp.lights();
         mvp.translate(mvp.width / 2, mvp.height / 2);
         drawCylinder();
