@@ -155,7 +155,7 @@ public class Chorus {
                 int index = i % numSegments;
                 float amp1 = mvp.getFFT().getBand(index) * 50;
                 float amp2 = mvp.getFFT().getBand((index + 1) % numSegments) * 50;
-                mvp.stroke(255 - amp1, 255 - amp2, 255);
+                mvp.stroke(255 - amp1, 255, 255);
                 float mappedStrokeWeight = PApplet.map(amp2, 0, 255, baseStrokeWeight, maxStrokeWeight);
                 mvp.strokeWeight(mappedStrokeWeight);
                 mvp.vertex(x1, y1, z);
