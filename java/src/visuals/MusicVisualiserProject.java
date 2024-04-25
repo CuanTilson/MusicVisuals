@@ -28,10 +28,10 @@ public class MusicVisualiserProject extends Visual {
             21, // Pre-Chorus 1
             37, // Chorus 1
             61, // Verse 2
-            80, // Pre-Chorus 2 (Assuming 21-36 was a typo and should be 80-94)
+            80, // Pre-Chorus 2
             95, // Chorus 2
             120, // Bridge
-            140 // Chorus 3 (Adjust these values as needed)
+            140 // Chorus 3
     };
 
     public void settings() {
@@ -76,11 +76,11 @@ public class MusicVisualiserProject extends Visual {
                 getAudioPlayer().cue(0);
                 getAudioPlayer().play();
             } else {
-                getAudioPlayer().play((int) pausedPosition); // continue playing at paused position
+                getAudioPlayer().play((int) pausedPosition); // Continue playing at paused position
             }
         } else { // if playing
             getAudioPlayer().pause();
-            pausedPosition = getAudioPlayer().position(); // record paused position in song
+            pausedPosition = getAudioPlayer().position(); // Record paused position in song
         }
     }
 
@@ -155,7 +155,7 @@ public class MusicVisualiserProject extends Visual {
             case 6: // Bridge
                 bridge.render(width, height);
                 break;
-            case 7: // Chorus 3 (or any additional sections)
+            case 7: // Chorus 3
                 chorus.render();
                 break;
             default:
