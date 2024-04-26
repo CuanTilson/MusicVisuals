@@ -36,4 +36,4 @@ The song has a narrow theme that we could really play with the visuals and be cr
 The song is about a young man named “Diego” who enters a nightclub while attempting to sing his favorite song “Rapper’s Delight” by the Sugarhill Gang. His Spanish gibberish imitation of that song makes The Ketchup song’s main chorus
 
 # Instructions
-Simply, Clone this repo and run Java on your IDE. This project was tested and run on Visual Studio Code. Use the space bar to pause/play the music.
+Clone this repo and run Java on your IDE. This project was tested and run on Visual Studio Code. Use the space bar to pause/play the music.
