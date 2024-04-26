@@ -9,7 +9,7 @@ The project aimed to create visuals that encapsulate and reflect the song’s st
 [YouTube Video Link](https://www.youtube.com/watch?v=L3T1boiDQXU)
 
 For an in-depth explanation of the project, go to the documentation linked below.
-[Documentation Link](https://tudublin-my.sharepoint.com/:w:/g/personal/c22731795_mytudublin_ie/EdwaNYgvJyRIhURhicY35C8BIxX8P5N1tUtQZr1AFkpqDg?e=nKQ7ez)
+[Documentation Link](https://tudublin-my.sharepoint.com/:b:/g/personal/c22385233_mytudublin_ie/EeGp1mhyhXdFo78heUYfazwB7G-WBUxcV35IU8TG_fHkTQ?e=LFZJf0)
 
 
 ## Authors
