@@ -25,7 +25,7 @@ We choose [Aserejé (The Ketchup Song) [Spanish Version]](https://www.youtube.co
 
 https://github.com/CuanTilson/MusicVisuals/assets/20033197/35debb43-4cfa-438b-a5b6-cef8ae9eba9a
 
-[![YouTube](https://img.youtube.com/vi/arZZw8NyPq8/0.jpg)](https://www.youtube.com/watch?v=arZZw8NyPq8)
+// [![YouTube](https://img.youtube.com/vi/arZZw8NyPq8/0.jpg)](https://www.youtube.com/watch?v=arZZw8NyPq8)
 
 We choose this song as it was [top of the charts in 2002](https://top40-charts.com/chart.php?cid=31&date=2002-11-23), the year we were born.
 We thought that the theme, and high energy of the song would be perfect for our music visualiser.
