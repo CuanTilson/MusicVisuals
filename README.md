@@ -11,9 +11,8 @@ The project aimed to create visuals that encapsulate and reflect the song’s st
 [Our Music Visualiser YouTube Link](https://www.youtube.com/watch?v=L3T1boiDQXU)
 
 For an in-depth explanation of the project, go to the documentation linked below.
-<!--- [Documentation Link](https://tudublin-my.sharepoint.com/:w:/g/personal/c22731795_mytudublin_ie/EdwaNYgvJyRIhURhicY35C8BIxX8P5N1tUtQZr1AFkpqDg?e=nKQ7ez) --->
 [Documentation Link](https://tudublin-my.sharepoint.com/:b:/g/personal/c22385233_mytudublin_ie/EakTi7_mMwlHjzaN9atO19sBoFk8wRfGeKqr81alCy1Dqw?e=r9FNPe)
-
+<!--- [Documentation Link](https://tudublin-my.sharepoint.com/:w:/g/personal/c22731795_mytudublin_ie/EdwaNYgvJyRIhURhicY35C8BIxX8P5N1tUtQZr1AFkpqDg?e=nKQ7ez) --->
 
 ## Authors
 
