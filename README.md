@@ -6,6 +6,8 @@ This is a music visualiser created for the song “The Ketchup Song” by Aserej
 
 The project aimed to create visuals that encapsulate and reflect the song’s structure, tempo and rhythm. In addition, demonstrated solid understanding and use of object-oriented programming, Java, Minim library and Processing library; teamwork and collaboration.  
 
+## Project Links
+
 [Our Music Visualiser YouTube Link](https://www.youtube.com/watch?v=L3T1boiDQXU)
 
 For an in-depth explanation of the project, go to the documentation linked below.
