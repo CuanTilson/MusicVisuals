@@ -12,7 +12,7 @@ The project aimed to create visuals that encapsulate and reflect the song’s st
 
 For an in-depth explanation of the project, go to the documentation linked below.
 
-[Documentation Link](https://tudublin-my.sharepoint.com/:b:/g/personal/c22385233_mytudublin_ie/EakTi7_mMwlHjzaN9atO19sBoFk8wRfGeKqr81alCy1Dqw?e=r9FNPe)
+[Documentation Link](https://tudublin-my.sharepoint.com/:b:/g/personal/c22385233_mytudublin_ie/EZ1qmujh1JJPglaVuxzmQ7cBflg9QTk__T68hQZO6_-GIw?e=IW4CBj)
 <!--- [Documentation Link](https://tudublin-my.sharepoint.com/:w:/g/personal/c22731795_mytudublin_ie/EdwaNYgvJyRIhURhicY35C8BIxX8P5N1tUtQZr1AFkpqDg?e=nKQ7ez) --->
 
 ## Authors
